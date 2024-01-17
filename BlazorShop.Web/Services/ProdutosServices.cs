@@ -17,7 +17,18 @@ namespace BlazorShop.Web.Services
 
         public async Task<ProdutoDto> GetItem(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _httpClient.
+                GetFromJsonAsync<ProdutoDto>
+                ($"api/produtos/{id}") ?? new ProdutoDto { };
+            }
+            catch (Exception)
+            {
+                _logger.LogError("Error ao acesssar produtos : api/produtos/id");
+                throw;
+            }
+
         }
 
         public async Task<IEnumerable<ProdutoDto>> GetItens()

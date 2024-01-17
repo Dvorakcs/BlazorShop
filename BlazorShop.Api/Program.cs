@@ -21,6 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 });
 
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<ICarrinhoCompraRepository, CarrinhoCompraRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
