@@ -3,14 +3,14 @@
 <div class="container-nav">
     
     <nav class="nav-menu">
-        <button class="btnList-nav-menu oi oi-arrow-left" @onclick="moverParaEsquerda">  </button>
-        @foreach (var item in CategoriaDtos)
-        {
-            <RotaCategoriaCatalogo CategoriaDto="item"></RotaCategoriaCatalogo>
-
-
-        }
-        <button class="btnList-nav-menu-right oi oi-arrow-right" @onclick="moverParaDireita"></button>
+        <button class="btnList-nav-menu" style="margin-left: 15px;" @onclick="moverParaEsquerda"><i class="fa-solid fa-angle-left"></i></button>
+        <div class="menunav-items">
+            @foreach (var item in CategoriaDtos.Take(4))
+            {
+                <RotaCategoriaCatalogo CategoriaDto="item"></RotaCategoriaCatalogo>
+            }
+        </div>
+        <button class="btnList-nav-menu" @onclick="moverParaDireita"><i class="fa-solid fa-angle-right"></i></button>
         <RotaCategoriaCatalogo CategoriaDto="categoriaAll"></RotaCategoriaCatalogo>
 
     </nav>
@@ -27,6 +27,7 @@
         };
     protected override async Task OnInitializedAsync()
     {
+        
         CategoriaDtos = await catalogoService.GetCategorias();
     }
 

@@ -1,23 +1,24 @@
-﻿.container-nav
-{
-    display:flex;
-    background-color:#ebebeb;
+﻿.container-nav {
+    display: block;
+    background-color: #ebebeb;
     border-radius: 18px;
-    max-width: 80%;
-    margin:15px;
+    width: 58%;
+    margin: 15px;
 }
-.nav-menu{
-    display:flex;
+.nav-menu {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
 }
 .btnList-nav-menu{
    border:none;
    border-style:none;
    background:none;
-   margin:0px 0px 5px 10px;
+   color:#0d6efd83;
+
 }
-.btnList-nav-menu-right {
-    border: none;
-    border-style: none;
-    background: none;
-    margin: 0px 0px 5px 0px;
+.menunav-items{
+    display:flex;
+    min-width: 50%;
 }
