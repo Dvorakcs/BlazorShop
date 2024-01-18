@@ -1,0 +1,10 @@
+﻿.categoriaNome {
+    font-size:14px;
+}
+
+@media only screen and (max-width: 600px) {
+    .categoriaNome {
+            display: none;
+        }
+
+}

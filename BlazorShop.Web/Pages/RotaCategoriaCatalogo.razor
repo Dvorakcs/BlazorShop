@@ -1,8 +1,9 @@
 ﻿@inject NavigationManager NavigationManager
 
-<a class="nav-link" title="@CategoriaDto.Nome" style="display:block;" href="@("/produtos/" + CategoriaDto.Id)">
-    <span @onclick="(() => NavegarParaProdutos(CategoriaDto.Id))" class="oi oi-home" aria-hidden="true"></span> @FormatName
- </a>
+<a class="nav-link" title="@CategoriaDto.Nome" href="@("/produtos/" + CategoriaDto.Id)">
+        <span @onclick="(() => NavegarParaProdutos(CategoriaDto.Id))" class="@CategoriaDto.IconCSS" aria-hidden="true"></span>
+        <span class="categoriaNome">@FormatName</span>
+</a>
 
 
 @code {

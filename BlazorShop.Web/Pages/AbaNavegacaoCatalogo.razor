@@ -11,6 +11,7 @@
             }
         </div>
         <button class="btnList-nav-menu" @onclick="moverParaDireita"><i class="fa-solid fa-angle-right"></i></button>
+        <div class="linha-vertical"></div>
         <RotaCategoriaCatalogo CategoriaDto="categoriaAll"></RotaCategoriaCatalogo>
 
     </nav>
@@ -22,7 +23,7 @@
     public CategoriaDto categoriaAll = new CategoriaDto()
         {
             Id = 0,
-            IconCSS = "",
+            IconCSS = "fa-solid fa-shop",
             Nome = "Todos os produtos"
         };
     protected override async Task OnInitializedAsync()

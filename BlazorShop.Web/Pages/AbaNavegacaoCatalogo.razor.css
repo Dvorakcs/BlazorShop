@@ -20,5 +20,23 @@
 }
 .menunav-items{
     display:flex;
-    min-width: 50%;
+}
+.linha-vertical {
+    border-right: 1.5px solid #cecece8c; 
+    border-radius:5px;
+    height: 25px;
+}
+/* Adicione uma consulta de mídia para telas menores */
+@media only screen and (max-width: 600px) {
+    .nav-menu {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .container-nav {
+        width: 100%;
+    }
+    .menunav-items {
+        width:60%;
+    }
 }
