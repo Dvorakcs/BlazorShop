@@ -1,0 +1,15 @@
+﻿@inject NavigationManager NavigationManager
+
+<a class="nav-link" href="@("/produtos/" + CategoriaDto.Id)">
+    <span @onclick="(() => NavegarParaProdutos(CategoriaDto.Id))" class="oi oi-home" aria-hidden="true"></span> @CategoriaDto.Nome
+ </a>
+
+
+@code {
+    [Parameter]
+    public CategoriaDto CategoriaDto { get; set; }
+    void NavegarParaProdutos(int categoriaId)
+    {
+        NavigationManager.NavigateTo($"/produtos/{categoriaId}");
+    }
+}

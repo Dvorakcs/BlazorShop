@@ -1,0 +1,23 @@
+﻿.container-nav
+{
+    display:flex;
+    background-color:#ebebeb;
+    border-radius: 18px;
+    max-width: 80%;
+    margin:15px;
+}
+.nav-menu{
+    display:flex;
+}
+.btnList-nav-menu{
+   border:none;
+   border-style:none;
+   background:none;
+   margin:0px 0px 5px 10px;
+}
+.btnList-nav-menu-right {
+    border: none;
+    border-style: none;
+    background: none;
+    margin: 0px 0px 5px 0px;
+}

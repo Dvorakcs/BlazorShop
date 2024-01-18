@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,10 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\AbaNavegacaoCatalogo.razor.css" />
+    <None Remove="Pages\Catalogo.razor.css" />
     <None Remove="Pages\ExibirProdutos.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Pages\AbaNavegacaoCatalogo.razor.css" />
+    <Content Include="Pages\Catalogo.razor.css" />
     <Content Include="Pages\ExibirProdutos.razor.css" />
   </ItemGroup>
 

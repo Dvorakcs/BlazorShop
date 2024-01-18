@@ -1,0 +1,69 @@
+﻿@inject ICatologoServices catalogoService
+@inject IProdutosServices produtosService
+<div class="container-nav">
+    
+    <nav class="nav-menu">
+        <button class="btnList-nav-menu oi oi-arrow-left" @onclick="moverParaEsquerda">  </button>
+        @foreach (var item in CategoriaDtos)
+        {
+            <RotaCategoriaCatalogo CategoriaDto="item"></RotaCategoriaCatalogo>
+
+
+        }
+        <button class="btnList-nav-menu-right oi oi-arrow-right" @onclick="moverParaDireita"></button>
+        <RotaCategoriaCatalogo CategoriaDto="categoriaAll"></RotaCategoriaCatalogo>
+
+    </nav>
+   
+
+</div>
+@code {
+    public IEnumerable<CategoriaDto> CategoriaDtos { get; set; }
+    public CategoriaDto categoriaAll = new CategoriaDto()
+        {
+            Id = 0,
+            IconCSS = "",
+            Nome = "Todos os produtos"
+        };
+    protected override async Task OnInitializedAsync()
+    {
+        CategoriaDtos = await catalogoService.GetCategorias();
+    }
+
+    public void moverParaEsquerda()
+    {
+        if (CategoriaDtos.Count() > 1)
+        {
+            List<CategoriaDto> catNav = CategoriaDtos.ToList();
+            List<CategoriaDto> catNavReturn = new List<CategoriaDto>();
+
+
+            for (int CATEGORIA = 1; CATEGORIA < catNav.Count(); CATEGORIA++)
+            {
+                catNavReturn.Add(catNav[CATEGORIA]);
+            }
+
+            catNavReturn.Add(catNav[0]);
+            CategoriaDtos = catNavReturn;
+
+        }
+    }
+    public void moverParaDireita()
+    {
+        if (CategoriaDtos.Count() > 1)
+        {
+            List<CategoriaDto> catNav = CategoriaDtos.ToList();
+            List<CategoriaDto> catNavReturn = new List<CategoriaDto>();
+            
+            catNavReturn.Add(catNav[catNav.Count() - 1]);
+
+            for (int CATEGORIA = 1; CATEGORIA < catNav.Count(); CATEGORIA++)
+            {
+                catNavReturn.Add(catNav[CATEGORIA - 1]);
+            }
+            
+            CategoriaDtos = catNavReturn;
+
+        }
+    }
+}

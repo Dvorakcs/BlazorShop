@@ -1,39 +1,64 @@
-﻿@page "/produtos"
+﻿@page "/produtos/{Id:int}"
 @inject IProdutosServices produtoService
-<h3>Catalogo</h3>
-
-
 @if (Produtos == null)
 {
     <h3>Carregando Produtos...</h3>
 }
 else
 {
-    <h3 class="mb-5">Produtos</h3>
-    @if(Produtos.Count() > 0)
-    {
-        var produtosPorCategoria = from produto in Produtos
-                                   group produto by produto.CategoriaId into prodPorCatGrupo
-                                   orderby prodPorCatGrupo.Key
-                                   select prodPorCatGrupo;
+    <div class="Catalogo">
+        <AbaNavegacaoCatalogo></AbaNavegacaoCatalogo>
 
-        foreach (var ProdGrupo in produtosPorCategoria)
+        @if (Produtos.Count() > 0)
         {
-            <h4>@ProdGrupo.FirstOrDefault(pg => pg.CategoriaId == ProdGrupo.Key)?.CategoriaNome</h4>
-            <div class="row mt-3">
-                <ExibirProdutos Produtos="@ProdGrupo"></ExibirProdutos>
-            </div>
-            <hr  class="mb-2"/>
+            var produtosPorCategoria = from produto in Produtos
+                                       group produto by produto.CategoriaId into prodPorCatGrupo
+                                       orderby prodPorCatGrupo.Key
+                                       select prodPorCatGrupo;
+
+            foreach (var ProdGrupo in produtosPorCategoria)
+            {
+                <h4>@ProdGrupo.FirstOrDefault(pg => pg.CategoriaId == ProdGrupo.Key)?.CategoriaNome</h4>
+                <div class="row mt-3">
+                    <ExibirProdutos Produtos="@ProdGrupo"></ExibirProdutos>
+                </div>
+                <hr class="mb-2" />
+            }
+
         }
-       
-    }
+    </div>
 }
 
 @code {
     public IEnumerable<ProdutoDto>? Produtos { get; set; }
-
+    [Parameter]
+    public int Id { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        Produtos = await produtoService.GetItens();
+        if (Id > 0)
+        {
+            Produtos = await produtoService.GetItensPorCategoria(Id);
+
+        }
+        if (Produtos is null)
+        {
+            Produtos = await produtoService.GetItens();
+        }
+
     }
+    protected override async void OnParametersSet()
+    {
+        if (Id > 0)
+        {
+            Produtos = await produtoService.GetItensPorCategoria(Id);
+            StateHasChanged();
+            return;
+
+        }
+       
+        Produtos = await produtoService.GetItens();
+        StateHasChanged();
+    }
+
+
 }

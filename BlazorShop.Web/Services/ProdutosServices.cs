@@ -50,7 +50,24 @@ namespace BlazorShop.Web.Services
 
         public async Task<IEnumerable<ProdutoDto>> GetItensPorCategoria(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if(id == 0)
+                {
+                    return await _httpClient.
+                    GetFromJsonAsync<IEnumerable<ProdutoDto>>
+                     ($"api/produtos/") ?? new List<ProdutoDto> { };
+                }
+
+                return await _httpClient.
+                GetFromJsonAsync<IEnumerable<ProdutoDto>>
+                ($"api/produtos/GetItensPorCategoria/{id}") ?? new List<ProdutoDto> { };
+            }
+            catch (Exception)
+            {
+                _logger.LogError("Error ao acesssar produtos : api/produtos");
+                throw;
+            }
         }
     }
 }
