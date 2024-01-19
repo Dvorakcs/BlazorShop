@@ -1,14 +1,14 @@
 ﻿@foreach (var item in Produtos)
 {
     <div class="col-md-3 mb-2">
-        <a href="/ProdutosDetalhes/@item.Id">
-        <div class="card">
+        <form class="card" action="/ProdutosDetalhes/@item.Id">
             <img class="img-thumbnail" src="@item.ImagemUrl" />
             <div class="card-body">
-                <h5 class="card-title mb-3">@item.Preco.ToString("c")</h5>
+                <h1 class="">@item.Nome</h1>
+
+                <button type="submit" class="btn-comprar">Comprar - @item.Preco.ToString("c")</button>
             </div>
-        </div>
-        </a>
+        </form>
     </div>
 }
 

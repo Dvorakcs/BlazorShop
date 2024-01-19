@@ -8,8 +8,8 @@
 
 @code {
     [Parameter]
-    public CategoriaDto CategoriaDto { get; set; }
-    public string FormatName { get;set; }
+    public CategoriaDto CategoriaDto { get; set; } = new CategoriaDto();
+    public string? FormatName { get;set; }
     void NavegarParaProdutos(int categoriaId)
     {
         NavigationManager.NavigateTo($"/produtos/{categoriaId}");
@@ -17,24 +17,25 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (CategoriaDto.Nome?.Length >= 13 && CategoriaDto.Id > 0)
+        if (CategoriaDto?.Nome?.Length >= 13 && CategoriaDto.Id > 0)
         {
             FormatName = $"{CategoriaDto.Nome.Substring(0, 10)}...";
         }
         else
         {
-            FormatName = CategoriaDto.Nome;
+            FormatName = CategoriaDto?.Nome;
         }
     }
-    protected override async void OnParametersSet()
+   
+    protected override void OnParametersSet()
     {
-        if (CategoriaDto.Nome?.Length >= 13 && CategoriaDto.Id > 0)
+        if (CategoriaDto?.Nome?.Length >= 13 && CategoriaDto.Id > 0)
         {
             FormatName = $"{CategoriaDto.Nome.Substring(0, 10)}...";
         }
         else
         {
-            FormatName = CategoriaDto.Nome;
+            FormatName = CategoriaDto?.Nome;
         }
         StateHasChanged();
     }

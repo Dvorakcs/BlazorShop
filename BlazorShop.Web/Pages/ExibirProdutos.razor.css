@@ -1,1 +1,49 @@
-﻿
+﻿.card {
+    background: none;
+    min-height: 290px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    border:none;
+    border:1px solid #e0dfdf;
+    
+}
+.card-body{
+    border:none;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    
+}
+.img-thumbnail {
+    margin-top:15px;
+  
+    width: 200px;
+    height: auto;
+    border:none;
+
+}
+h1 {
+    font-size: 14px;
+    text-decoration: none;
+    color:#0d6efd;
+}
+a {
+    text-decoration: none;
+}
+.btn-comprar {
+    border: 1px solid #ebebeb;
+    background: none;
+    border-radius: 18px;
+    height: 35px;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: auto;
+    color: #0d6efd;
+}
+    .btn-comprar:hover {
+        border: none;
+        background: #ebebeb;
+    }
