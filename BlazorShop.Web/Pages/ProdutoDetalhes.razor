@@ -1,6 +1,6 @@
 ﻿@page "/ProdutosDetalhes/{Id:int}"
 @inject IProdutosServices ProdutosServices
-
+@inject ICarrinhoCompraServices CarrinhoCompraService
 @if (Produto is not null)
 {
     <h3>Detalhes do produto</h3>
@@ -18,7 +18,11 @@
                 </b>
             </p>
             <div>
-                <button class="btn btn-success">
+                <button class="btn btn-success" @onclick="() => Additemcarrinho(new CarrinhoItemAdicionaDto{
+                     CarrinhoId = 1,
+                     ProdutoId = Produto.Id,
+                     Quantidade = 1
+                })">
                     Incluir no carrinho
                 </button>
             </div>
@@ -40,8 +44,13 @@
         }
         catch (Exception)
         {
-            
+
             throw;
         }
+    }
+
+    public async Task Additemcarrinho(CarrinhoItemAdicionaDto itemCarrinho)
+    {
+        await CarrinhoCompraService.AdicionaItem(itemCarrinho);
     }
 }
